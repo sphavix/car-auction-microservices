@@ -1,0 +1,24 @@
+name: dockercompose2299316177751160483
+services:
+  postgres:
+    environment:
+      POSRGRES_PASSWORD: postgrespw
+    image: postgres
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "5432"
+        protocol: tcp
+    volumes:
+      - type: volume
+        source: pgdata
+        target: /var/lib/postgresql/data
+        volume: {}
+networks:
+  default:
+    name: dockercompose2299316177751160483_default
+volumes:
+  pgdata:
+    name: dockercompose2299316177751160483_pgdata
