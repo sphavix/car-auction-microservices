@@ -1,3 +1,4 @@
+using AuctionService.Api.Configurations;
 using AuctionService.Api.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<AuctionDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddAutoMapper(typeof(MappingConfigurations).Assembly);
 
 
 var app = builder.Build();

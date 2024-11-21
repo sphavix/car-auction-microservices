@@ -104,3 +104,4 @@ H:\2024\SideProjects\car-auction-microservices\src\AuctionService\obj\Debug\net8
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\obj\Debug\net8.0\AuctionService.Api.pdb
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\obj\Debug\net8.0\AuctionService.Api.genruntimeconfig.cache
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\obj\Debug\net8.0\ref\AuctionService.Api.dll
+H:\2024\SideProjects\car-auction-microservices\src\AuctionService\obj\Debug\net8.0\AuctionService.Api.sourcelink.json
