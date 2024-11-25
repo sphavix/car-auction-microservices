@@ -2,6 +2,7 @@ using MongoDB.Entities;
 using MongoDB.Driver;
 using SearchService.Api.Models.Domain;
 using System.Text.Json;
+using SearchService.Api.Services;
 
 
 namespace SearchService.Persistence
@@ -21,17 +22,16 @@ namespace SearchService.Persistence
 
             var count = await DB.CountAsync<Item>();
 
-            if(count == 0)
+            using var scope = app.Services.CreateScope();
+
+            var httpClient = scope.ServiceProvider.GetRequiredService<AuctionServiceHttpClient>();
+
+            var items = await httpClient.GetItemsForSearchSvc();
+
+            Console.WriteLine(items.Count + " returned items from the auction service");
+
+            if(items.Count > 0)
             {
-                Console.WriteLine("Database is empty, attempting to populate databse");
-
-                var itemData = await File.ReadAllTextAsync("Persistence/auctions.json");
-
-                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
-
-                var items = JsonSerializer.Deserialize<List<Item>>(itemData, options);
-
                 await DB.SaveAsync(items);
             }
         }
