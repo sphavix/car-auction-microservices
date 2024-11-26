@@ -1,6 +1,7 @@
 ﻿using AuctionService.Api.Models.Domain;
 using AuctionService.Api.Models.Dtos;
 using AutoMapper;
+using SharedContracts.Events.Auctions;
 
 namespace AuctionService.Api.Configurations
 {
@@ -16,6 +17,9 @@ namespace AuctionService.Api.Configurations
                 .ForMember(d => d.Item, x => x.MapFrom(src => src));
 
             CreateMap<CreateAuctionDto, Item>();
+
+            // event created mapping
+            CreateMap<AuctionDto, AuctionCreated>();
         }
     }
 }
