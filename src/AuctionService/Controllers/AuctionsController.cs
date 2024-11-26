@@ -3,9 +3,11 @@ using AuctionService.Api.Models.Dtos;
 using AuctionService.Api.Persistence;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using MassTransit;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SharedContracts.Events.Auctions;
 
 namespace AuctionService.Api.Controllers
 {
@@ -15,11 +17,13 @@ namespace AuctionService.Api.Controllers
     {
         private readonly AuctionDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public AuctionsController(AuctionDbContext context, IMapper mapper)
+        public AuctionsController(AuctionDbContext context, IMapper mapper, IPublishEndpoint publishEndpoint)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint)); 
         }
 
         [HttpGet]
@@ -53,23 +57,26 @@ namespace AuctionService.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto auctionDto)
         {
-            var aution = _mapper.Map<Auction>(auctionDto);
+            var auction = _mapper.Map<Auction>(auctionDto);
 
             // TODO: add current user as seller
-            aution.Seller = "Test";
+            auction.Seller = "Test";
 
-            _context.Auctions.Add(aution);
+            _context.Auctions.Add(auction);
 
             var result = await _context.SaveChangesAsync() > 0;
+
+            var response = _mapper.Map<AuctionDto>(auction);
+
+            // publish the event to the event bus
+            await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(response));
 
             if (!result)
             {
                 return BadRequest("An error occured while trying to save changes!");
             }
 
-            var response = _mapper.Map<AuctionDto>(aution);
-
-            return CreatedAtAction(nameof(GetAuction), new { aution.Id }, response);
+            return CreatedAtAction(nameof(GetAuction), new { auction.Id }, response);
         }
 
         [HttpPut]
