@@ -20,6 +20,11 @@ namespace SearchService.Api.Consumers
 
             var item = _mapper.Map<Item>(context.Message);
 
+            if(item.Model == "Foo")
+            {
+                throw new ArgumentException("Cannot sell cars with name  FOO");
+            }
+
             await item.SaveAsync();
         }
     }

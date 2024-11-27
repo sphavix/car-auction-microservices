@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AatlmA5hWAxiUiAfpXQBAZ7CrgcXbnxYC8n+tm+pZddyr0HXbrMAN/BrZrahVCtSuWMY5zfbWjL3Yzw6gaeUIg==",
+  "dgSpecHash": "PmmJUvWJiYirkhG2T3B+6Cl134mxpYyhzwKu//qkrHttiVfBbUmlOEoZcBdS1pvSjg1MeMdlaHiGxhzE3ffX/A==",
   "success": true,
   "projectFilePath": "H:\\2024\\SideProjects\\car-auction-microservices\\src\\AuctionService\\AuctionService.Api.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Hackethon\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Hackethon\\.nuget\\packages\\masstransit\\8.3.2\\masstransit.8.3.2.nupkg.sha512",
     "C:\\Users\\Hackethon\\.nuget\\packages\\masstransit.abstractions\\8.3.2\\masstransit.abstractions.8.3.2.nupkg.sha512",
+    "C:\\Users\\Hackethon\\.nuget\\packages\\masstransit.entityframeworkcore\\8.3.2\\masstransit.entityframeworkcore.8.3.2.nupkg.sha512",
     "C:\\Users\\Hackethon\\.nuget\\packages\\masstransit.rabbitmq\\8.3.2\\masstransit.rabbitmq.8.3.2.nupkg.sha512",
     "C:\\Users\\Hackethon\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\Hackethon\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",

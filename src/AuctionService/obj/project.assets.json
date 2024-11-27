@@ -65,6 +65,23 @@
           }
         }
       },
+      "MassTransit.EntityFrameworkCore/8.3.2": {
+        "type": "package",
+        "dependencies": {
+          "MassTransit": "8.3.2",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/MassTransit.EntityFrameworkCoreIntegration.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/MassTransit.EntityFrameworkCoreIntegration.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MassTransit.RabbitMQ/8.3.2": {
         "type": "package",
         "dependencies": {
@@ -1122,6 +1139,23 @@
         "lib/netstandard2.0/MassTransit.Abstractions.xml",
         "masstransit.abstractions.8.3.2.nupkg.sha512",
         "masstransit.abstractions.nuspec",
+        "mt-logo-small.png"
+      ]
+    },
+    "MassTransit.EntityFrameworkCore/8.3.2": {
+      "sha512": "QMLLfWs/gXsERpEC6qRot0IuUM7C59H5qAvuNPwv7vvR61kS6Mazw/zMBsY5RepGMvYZj3P75cbtllWpFCorVw==",
+      "type": "package",
+      "path": "masstransit.entityframeworkcore/8.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NuGet.README.md",
+        "lib/net8.0/MassTransit.EntityFrameworkCoreIntegration.dll",
+        "lib/net8.0/MassTransit.EntityFrameworkCoreIntegration.xml",
+        "lib/net9.0/MassTransit.EntityFrameworkCoreIntegration.dll",
+        "lib/net9.0/MassTransit.EntityFrameworkCoreIntegration.xml",
+        "masstransit.entityframeworkcore.8.3.2.nupkg.sha512",
+        "masstransit.entityframeworkcore.nuspec",
         "mt-logo-small.png"
       ]
     },
@@ -2703,6 +2737,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "AutoMapper >= 13.0.1",
+      "MassTransit.EntityFrameworkCore >= 8.3.2",
       "MassTransit.RabbitMQ >= 8.3.2",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.11",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.19.5",
@@ -2756,6 +2791,10 @@
           "AutoMapper": {
             "target": "Package",
             "version": "[13.0.1, )"
+          },
+          "MassTransit.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[8.3.2, )"
           },
           "MassTransit.RabbitMQ": {
             "target": "Package",

@@ -64,12 +64,12 @@ namespace AuctionService.Api.Controllers
 
             _context.Auctions.Add(auction);
 
-            var result = await _context.SaveChangesAsync() > 0;
-
             var response = _mapper.Map<AuctionDto>(auction);
 
             // publish the event to the event bus
             await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(response));
+
+            var result = await _context.SaveChangesAsync() > 0;
 
             if (!result)
             {

@@ -9,6 +9,7 @@
       "AuctionService.Api/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "MassTransit.EntityFrameworkCore": "8.3.2",
           "MassTransit.RabbitMQ": "8.3.2",
           "Microsoft.EntityFrameworkCore.Design": "8.0.11",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.19.5",
@@ -57,6 +58,18 @@
       "MassTransit.Abstractions/8.3.2": {
         "runtime": {
           "lib/net8.0/MassTransit.Abstractions.dll": {
+            "assemblyVersion": "8.3.2.0",
+            "fileVersion": "8.3.2.0"
+          }
+        }
+      },
+      "MassTransit.EntityFrameworkCore/8.3.2": {
+        "dependencies": {
+          "MassTransit": "8.3.2",
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.11"
+        },
+        "runtime": {
+          "lib/net8.0/MassTransit.EntityFrameworkCoreIntegration.dll": {
             "assemblyVersion": "8.3.2.0",
             "fileVersion": "8.3.2.0"
           }
@@ -649,6 +662,13 @@
       "sha512": "sha512-26Ip8xJiu21DABFCFQkU5Lf6uoFkBzKW2PlHclxY/ATUbiZ6F89mf8QlCbdutngv5yoxWJPjFvnDaoSW3orpnA==",
       "path": "masstransit.abstractions/8.3.2",
       "hashPath": "masstransit.abstractions.8.3.2.nupkg.sha512"
+    },
+    "MassTransit.EntityFrameworkCore/8.3.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QMLLfWs/gXsERpEC6qRot0IuUM7C59H5qAvuNPwv7vvR61kS6Mazw/zMBsY5RepGMvYZj3P75cbtllWpFCorVw==",
+      "path": "masstransit.entityframeworkcore/8.3.2",
+      "hashPath": "masstransit.entityframeworkcore.8.3.2.nupkg.sha512"
     },
     "MassTransit.RabbitMQ/8.3.2": {
       "type": "package",

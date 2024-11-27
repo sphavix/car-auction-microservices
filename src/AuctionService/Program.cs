@@ -1,4 +1,5 @@
 using AuctionService.Api.Configurations;
+using AuctionService.Api.Consumers;
 using AuctionService.Api.Persistence;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,23 @@ builder.Services.AddAutoMapper(typeof(MappingConfigurations).Assembly);
 
 builder.Services.AddMassTransit(options =>
 {
+    //config the outbox to store messages while the service is down
+    options.AddEntityFrameworkOutbox<AuctionDbContext>(x =>
+    {
+        x.QueryDelay = TimeSpan.FromSeconds(10);
+
+        // use Postgres to store messages
+        x.UsePostgres();
+        x.UseBusOutbox();
+
+    });
+    // configure consumer 
+    options.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
+
+    // name formatter
+    options.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
+
+
     options.UsingRabbitMq((context, config) =>
     {
         config.ConfigureEndpoints(context);
