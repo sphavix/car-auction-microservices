@@ -111,3 +111,4 @@ H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\RabbitMQ.Client.dll
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\SharedContracts.dll
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\SharedContracts.pdb
+H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\MassTransit.EntityFrameworkCoreIntegration.dll

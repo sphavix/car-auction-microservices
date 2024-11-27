@@ -28,6 +28,18 @@ builder.Services.AddMassTransit(options =>
     // configure endpoint & context
     options.UsingRabbitMq((context, config) =>
     {
+
+        // configure retries when the db for the service fails
+        config.ReceiveEndpoint("search-auction-created", r =>
+        {
+            r.UseMessageRetry(m => m.Interval(5, 5));
+
+            // configure consumer we performing the retries for
+            r.ConfigureConsumer<AuctionCreatedConsumer>(context);
+
+        });
+
+
         config.ConfigureEndpoints(context);
     });
 });
