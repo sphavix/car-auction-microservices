@@ -9,6 +9,7 @@ namespace SearchService.Api.RequestHelpers
         public MappingConfigurations()
         {
             CreateMap<AuctionCreated, Item>();
+            CreateMap<AuctionUpdated, Item>();
         }
     }
 }

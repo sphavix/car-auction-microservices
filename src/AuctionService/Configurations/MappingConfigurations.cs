@@ -20,6 +20,8 @@ namespace AuctionService.Api.Configurations
 
             // event created mapping
             CreateMap<AuctionDto, AuctionCreated>();
+            CreateMap<Auction, AuctionUpdated>().IncludeMembers(x => x.Item);
+            CreateMap<Item, AuctionUpdated>();
         }
     }
 }
