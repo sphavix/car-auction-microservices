@@ -4,6 +4,7 @@ using AuctionService.Api.Persistence;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -54,13 +55,14 @@ namespace AuctionService.Api.Controllers
             return Ok(response);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto auctionDto)
         {
             var auction = _mapper.Map<Auction>(auctionDto);
 
-            // TODO: add current user as seller
-            auction.Seller = "Test";
+            // add current user as seller
+            auction.Seller = User.Identity.Name;
 
             _context.Auctions.Add(auction);
 
@@ -79,6 +81,7 @@ namespace AuctionService.Api.Controllers
             return CreatedAtAction(nameof(GetAuction), new { auction.Id }, response);
         }
 
+        [Authorize]
         [HttpPut]
         [Route("{id:guid}")]
         public async Task<ActionResult> UpdateAuction(Guid id, UpdateAuctionDto auctionDto)
@@ -90,7 +93,11 @@ namespace AuctionService.Api.Controllers
                 return NotFound();
             }
 
-            // TODO: check seller  is the username that is updating
+            // check seller  is the username that is updating
+            if(auction.Seller != User.Identity.Name)
+            {
+                return Forbid();
+            }
 
             auction.Item.Make = auctionDto.Make ?? auction.Item.Make;
             auction.Item.Model = auctionDto.Model ?? auction.Item.Model;
@@ -111,6 +118,7 @@ namespace AuctionService.Api.Controllers
             return BadRequest("An error occured while saving changes!");
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("{id:guid}")]
         public async Task<ActionResult> DeleteAuction(Guid id)
@@ -118,6 +126,11 @@ namespace AuctionService.Api.Controllers
             var auction = await _context.Auctions.FindAsync(id);
 
             if (auction is null) return NotFound();
+
+            if(auction.Seller != User.Identity.Name)
+            {
+                return Forbid();
+            }
 
             _context.Auctions.Remove(auction);
 
