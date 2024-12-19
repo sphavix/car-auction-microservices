@@ -15,7 +15,17 @@ namespace AuctionService.Api.Consumers
 
         public async Task Consume(ConsumeContext<BidPlaced> context)
         {
+            Console.WriteLine("--- Consuming bid placed event message.");
 
+            var auction = await _context.Auctions.FindAsync(context.Message.AuctionId);
+
+            if(auction.CurrentHighBid == null || context.Message.BidStatus.Contains("Accepted") 
+                && context.Message.Amount > auction.CurrentHighBid)
+            {
+                auction.CurrentHighBid = context.Message.Amount;
+
+                await _context.SaveChangesAsync();
+            }
         }
     }
 

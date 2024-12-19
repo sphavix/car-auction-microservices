@@ -16,6 +16,7 @@ namespace AuctionService.Api.Consumers
 
         public async Task Consume(ConsumeContext<AuctionFinished> context)
         {
+            Console.WriteLine("---> Consuming auction finished event.");
             var auction = await _context.Auctions.FindAsync(context.Message.AuctionId);
 
             if(context.Message.ItemSold)

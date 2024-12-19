@@ -1,0 +1,27 @@
+﻿using MassTransit;
+using MongoDB.Entities;
+using SearchService.Api.Models.Domain;
+using SharedContracts.Events.Auctions;
+
+namespace SearchService.Api.Consumers
+{
+    public class AuctionFinishedConsumer : IConsumer<AuctionFinished>
+    {
+        public async Task Consume(ConsumeContext<AuctionFinished> context)
+        {
+            Console.WriteLine("---> Consuming auction finished event.");
+
+            var auction = await DB.Find<Item>().OneAsync(context.Message.AuctionId);
+
+            if(context.Message.ItemSold)
+            {
+                auction.Winner = context.Message.Winner;
+                auction.SoldAmount = (int)context.Message.Amount;
+            }
+
+            auction.Status = "Finished";
+
+            await auction.SaveAsync();
+        }
+    }
+}
