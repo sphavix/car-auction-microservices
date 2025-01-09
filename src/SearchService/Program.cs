@@ -28,6 +28,12 @@ builder.Services.AddMassTransit(options =>
     // configure endpoint & context
     options.UsingRabbitMq((context, config) =>
     {
+        // Config for RabbitMQ
+        config.Host(builder.Configuration["RabbitMQ:Host"], "/", host =>
+        {
+            host.Username(builder.Configuration.GetValue("RabbitMQ:Username", "guest"));
+            host.Password(builder.Configuration.GetValue("RabbitMQ:Password", "guest"));
+        });
 
         // configure retries when the db for the service fails
         config.ReceiveEndpoint("search-auction-created", r =>

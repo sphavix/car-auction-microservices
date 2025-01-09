@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{023DEDDA-445
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionService.Api", "src\AuctionService\AuctionService.Api.csproj", "{0D0C5150-24AB-470C-A8E5-05965D1CDE62}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A6EFFF22-0342-4D9D-A335-8D0510371E5F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchService.Api", "src\SearchService\SearchService.Api.csproj", "{70F36A3A-1AE5-454A-BFAC-534CD90A67E4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedContracts", "src\SharedContracts\SharedContracts.csproj", "{DCC2BCA0-9571-4BBE-BF6E-ED941AF6E2DE}"
