@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace AuctionService.Api.Persistence.Migrations
+namespace AuctionService.Api.Migrations
 {
     [DbContext(typeof(AuctionDbContext))]
-    [Migration("20241127155420_OutBoxCreating")]
-    partial class OutBoxCreating
+    [Migration("20250110160942_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -120,3 +120,5 @@ H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\dbup-core.dll
+H:\2024\SideProjects\car-auction-microservices\src\AuctionService\bin\Debug\net8.0\dbup-postgresql.dll

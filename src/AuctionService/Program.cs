@@ -71,6 +71,7 @@ app.MapControllers();
 
 try
 {
+
     DatabaseInitializer.Initialize(app);
 }
 catch(Exception e)
