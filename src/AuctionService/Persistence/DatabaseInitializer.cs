@@ -5,16 +5,16 @@ namespace AuctionService.Api.Persistence
 {
     public class DatabaseInitializer
     {
-        public static void Initialize(WebApplication app) 
-        {
-            using var scope = app.Services.CreateScope();
+        //public static void Initialize(WebApplication app) 
+        //{
+        //    using var scope = app.Services.CreateScope();
 
-            SeedData(scope.ServiceProvider.GetService<AuctionDbContext>());
-        }
+        //    SeedData(scope.ServiceProvider.GetService<AuctionDbContext>());
+        //}
 
-        public static void SeedData(AuctionDbContext context)
+        public static async Task SeedData(AuctionDbContext context)
         {
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
             context.Database.Migrate();
 
             if (context.Auctions.Any())
@@ -206,8 +206,8 @@ namespace AuctionService.Api.Persistence
                 }
             };
 
-            context.AddRange(auctions);
-            context.SaveChanges();
+            await context.Auctions.AddRangeAsync(auctions);
+            await context.SaveChangesAsync();
         }
 
     }

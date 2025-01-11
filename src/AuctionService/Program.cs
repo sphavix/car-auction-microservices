@@ -18,6 +18,7 @@ builder.Services.AddDbContext<AuctionDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+
 builder.Services.AddAutoMapper(typeof(MappingConfigurations).Assembly);
 
 builder.Services.AddMassTransit(options =>
@@ -69,14 +70,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using var scope = app.Services.CreateScope();
+var serviceProvider = scope.ServiceProvider;
 try
 {
-
-    DatabaseInitializer.Initialize(app);
+    var context = serviceProvider.GetRequiredService<AuctionDbContext>();
+    await context.Database.MigrateAsync();
+    await DatabaseInitializer.SeedData(context);
 }
-catch(Exception e)
+catch(Exception ex)
 {
-    Console.WriteLine(e);
+    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "An error occurred while applying migrations");
 }
 
 app.Run();
